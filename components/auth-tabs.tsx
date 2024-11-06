@@ -40,25 +40,31 @@ function LoginForm() {
 
 function SignUpForm() {
   return (
-    <form
-      onSubmit={(e) => {
-        e.preventDefault();
-        const formData = new FormData(e.currentTarget);
-        signup(formData);
-      }}
-    >
+    <form>
       <div className="space-y-4">
         <div className="space-y-2">
-          <Label htmlFor="name">Name</Label>
-          <Input id="name" type="text" placeholder="John Doe" required />
+          <Label htmlFor="username">Username</Label>
+          <Input
+            id="username"
+            name="username"
+            type="username"
+            placeholder="John Doe"
+            required
+          />
         </div>
         <div className="space-y-2">
           <Label htmlFor="email">Email</Label>
-          <Input id="email" type="email" placeholder="m@example.com" required />
+          <Input
+            id="email"
+            name="email"
+            type="email"
+            placeholder="m@example.com"
+            required
+          />
         </div>
         <div className="space-y-2">
           <Label htmlFor="password">Password</Label>
-          <Input id="password" type="password" required />
+          <Input id="password" name="password" type="password" required />
         </div>
       </div>
       <Button type="submit" className="w-full mt-6" formAction={signup}>
