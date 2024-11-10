@@ -3,24 +3,46 @@ import { Breadcrumb, BreadcrumbItem } from "@/components/ui/breadcrumb";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { getUserName } from "../auth/actions";
-import { FilePlus, FolderPlus } from "lucide-react";
+import { FilePlus } from "lucide-react";
 import MessageMultiple01Icon from "@/components/icons/message-multiple-01-stroke-rounded";
+import CloudUploadIcon from "@/components/icons/cloud-upload-stroke-rounded";
 import { useEffect, useState } from "react";
 import FilesTabs from "@/components/files-tabs";
+import FilesList from "@/components/files-list";
 
 export default function Home() {
+  const files = [
+    {
+      name: "Project Report.pdf",
+      size: "1.2 MB",
+      date: "2021-09-01",
+      type: "pdf",
+    },
+    {
+      name: "Requirements.doc",
+      size: "2.2 MB",
+      date: "2021-09-02",
+      type: "doc",
+    },
+    {
+      name: "Model Results.csv",
+      size: "3.2 MB",
+      date: "2021-09-03",
+      type: "csv",
+    },
+  ];
   const cards = [
     {
       title: "New Document",
       description: "Create a new document",
-      href: "#",
+      href: "#create",
       icon: FilePlus,
     },
     {
-      title: "New Folder",
-      description: "Create a new folder",
+      title: "Upload Document",
+      description: "Upload a new document",
       href: "#",
-      icon: FolderPlus,
+      icon: CloudUploadIcon,
     },
     {
       title: "Collaboration",
@@ -97,6 +119,9 @@ export default function Home() {
         <h1 className="font-medium mt-5">All Documents</h1>
         <div className="mt-4">
           <FilesTabs />
+        </div>
+        <div className="mt-4">
+          <FilesList files={files} />
         </div>
       </div>
     </div>

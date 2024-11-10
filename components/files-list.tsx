@@ -1,5 +1,12 @@
 import DocumentValidationIcon from "./icons/document-validation-stroke-rounded";
-import { Card, CardHeader, CardTitle } from "./ui/card";
+import Csv01Icon from "./icons/csv-01-stroke-rounded";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "./ui/card";
 
 interface File {
   name: string;
@@ -10,30 +17,39 @@ interface File {
 
 export default function FilesList({ files }: { files: File[] }) {
   return (
-    <div className="flex flex-col space-y-4">
+    <div className="grid grid-cols-3 gap-2">
       {files.map((file, index) => (
         <Card key={index}>
+          {" "}
+          {/* Adjust the height as needed */}
           <CardHeader>
-            <DocumentValidationIcon
-              className={`h-5 w-5 mr-2 ${
-                file.type === "pdf"
-                  ? "text-red-500"
-                  : file.type === "word" ||
-                    file.type === "text" ||
-                    file.type === "markdown"
-                  ? "text-blue-500"
-                  : file.type === "csv"
-                  ? "text-green-500"
-                  : "dark:text-white"
-              }`}
-            />
-            <CardTitle>{file.name}</CardTitle>
+            <div className="flex flex-row items-center">
+              {file.type === "csv" ? (
+                <Csv01Icon className={`h-10 w-10 mr-2 text-green-500`} />
+              ) : (
+                <DocumentValidationIcon
+                  className={`h-10 w-10 mr-2 ${
+                    file.type === "pdf"
+                      ? "text-red-500"
+                      : file.type === "doc" ||
+                        file.type === "text" ||
+                        file.type === "markdown"
+                      ? "text-blue-500"
+                      : "dark:text-white"
+                  }`}
+                />
+              )}
+              <div>
+                <CardTitle>{file.name}</CardTitle>
+                <span className="text-sm text-neutral-500">{file.size}</span>
+              </div>
+            </div>
+            <CardDescription className="">
+              <span className="text-sm text-neutral-500">
+                Created on {file.date}
+              </span>
+            </CardDescription>
           </CardHeader>
-          <div>
-            <p>Size: {file.size}</p>
-            <p>Date: {file.date}</p>
-            <p>Type: {file.type}</p>
-          </div>
         </Card>
       ))}
     </div>

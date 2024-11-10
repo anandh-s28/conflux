@@ -1,8 +1,5 @@
 "use client";
-import SparklesIcon from "@/components/icons/sparkles-stroke-rounded";
 import DocumentValidationIcon from "@/components/icons/document-validation-stroke-rounded";
-import AiSettingIcon from "./icons/ai-setting-stroke-rounded";
-import { AtSign, Fingerprint, Combine, Boxes } from "lucide-react";
 import {
   Sidebar,
   SidebarContent,
@@ -26,49 +23,49 @@ import { getUserName, signOut } from "@/app/auth/actions";
 import { useEffect, useState } from "react";
 import MessageMultiple01Icon from "./icons/message-multiple-01-stroke-rounded";
 import CloudSavingDone02Icon from "./icons/cloud-saving-done-02-stroke-rounded";
-import QuillWrite02Icon from "./icons/quill-write-02-stroke-rounded";
+import CheckmarkBadge03Icon from "./icons/checkmark-badge-03-stroke-rounded";
+import Comment01Icon from "./icons/comment-01-stroke-rounded";
+import UserGroupIcon from "./icons/user-group-stroke-rounded";
+import ServerStack02Icon from "./icons/server-stack-02-stroke-rounded";
+import EditTableIcon from "./icons/edit-table-stroke-rounded";
+import AccountSetting02Icon from "./icons/account-setting-02-stroke-rounded";
 
 const docs = [
   {
-    title: "Uploaded Documents",
+    title: "Uploaded Datasets",
     url: "/uploads",
     icon: CloudSavingDone02Icon,
   },
   {
-    title: "Create Document",
+    title: "New Dataset",
     url: "/create",
-    icon: QuillWrite02Icon,
+    icon: EditTableIcon,
   },
 ];
 
 const collaborations = [
   {
-    title: "Discussions",
+    title: "Approvals",
     url: "/collaboration",
-    icon: AtSign,
+    icon: CheckmarkBadge03Icon,
   },
   {
-    title: "Access Control",
+    title: "Comments",
     url: "/collaborators/settings",
-    icon: Fingerprint,
+    icon: Comment01Icon,
   },
 ];
 
-const summaries = [
+const adminOptions = [
   {
-    title: "Generated Summaries",
-    url: "/summaries",
-    icon: Boxes,
+    title: "Users",
+    url: "/admin#users",
+    icon: UserGroupIcon,
   },
   {
-    title: "RAG",
-    url: "/create-summary",
-    icon: Combine,
-  },
-  {
-    title: "Model Settings",
-    url: "/model",
-    icon: AiSettingIcon,
+    title: "Infrastructure",
+    url: "/admin/infrastructure",
+    icon: ServerStack02Icon,
   },
 ];
 
@@ -97,7 +94,7 @@ export function AppSidebar() {
           <SidebarMenuButton>
             <DocumentValidationIcon className="h-5 w-5 dark:text-white mr-2" />
             <SidebarGroupLabel className="font-medium">
-              Documents
+              Datasets
             </SidebarGroupLabel>
           </SidebarMenuButton>
           {docs.map((doc) => (
@@ -126,7 +123,7 @@ export function AppSidebar() {
               <SidebarMenuItem>
                 <SidebarMenuButton asChild>
                   <a href={collaborations.url}>
-                    <collaborations.icon />
+                    <collaborations.icon className="dark:text-white" />
                     <span>{collaborations.title}</span>
                   </a>
                 </SidebarMenuButton>
@@ -137,18 +134,18 @@ export function AppSidebar() {
         </SidebarGroup>
         <SidebarGroup>
           <SidebarMenuButton>
-            <SparklesIcon className="h-4 w-4 dark:text-white mr-2" />
+            <AccountSetting02Icon className="h-4 w-4 dark:text-white mr-2" />
             <SidebarGroupLabel className="font-medium">
-              Summarise
+              Admin Settings
             </SidebarGroupLabel>
           </SidebarMenuButton>
-          {summaries.map((summary) => (
-            <SidebarMenuSub key={summary.title}>
+          {adminOptions.map((admin) => (
+            <SidebarMenuSub key={admin.title}>
               <SidebarMenuItem>
                 <SidebarMenuButton asChild>
-                  <a href={summary.url}>
-                    <summary.icon />
-                    <span>{summary.title}</span>
+                  <a href={admin.url}>
+                    <admin.icon className="dark:text-white" />
+                    <span>{admin.title}</span>
                   </a>
                 </SidebarMenuButton>
               </SidebarMenuItem>
